@@ -598,6 +598,8 @@ def crackSig(sig, contents):
 def castInput(newInput):
     if "{" or "[" in str(newInput):
         try:
+            if isinstance(newInput, OrderedDict):
+                newInput = json.dumps(newInput)
             jsonInput = json.loads(newInput)
             return jsonInput
         except ValueError:
